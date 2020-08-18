@@ -1,0 +1,24 @@
+{
+  "name": "rollup-cli2",
+  "version": "2.6.0",
+  "description": "a cli for rollup project",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "rollup",
+    "cli"
+  ],
+  "author": "lei.li",
+  "license": "ISC",
+  "bin": {
+    "rollup-cli2": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesmile2020/rollup-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wesmile2020/rollup-cli/issues"
+  },
+  "homepage": "https://github.com/wesmile2020/rollup-cli#readme"
+}
