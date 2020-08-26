@@ -1,6 +1,6 @@
 {
   "name": "rollup-cli2",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "a cli for rollup project",
   "main": "index.js",
   "scripts": {},
