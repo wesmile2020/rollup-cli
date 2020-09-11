@@ -15,6 +15,7 @@ module.exports = {
         project: './tsconfig.json',
     },
     rules: {
+        'no-undef': 'off',
         'no-console': 'off',
         'no-lonely-if': 'off',
         'arrow-body-style': 'off',
