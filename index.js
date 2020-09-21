@@ -2,6 +2,7 @@
 const fs = require('fs');
 const utils = require('./utils');
 const path = require('path');
+const log = require('./log');
 
 const cwd = process.cwd();
 const [, , ...args] = process.argv;
@@ -11,30 +12,30 @@ const package = require('./package.json');
 
 function init() {
     if (args.length === 0) {
-        console.log(`you can use:\n rollup-cli2 create \nrollup-cli2 init \nrollup-cli2 -v`);
+        log.blue(`you can use:\n rollup-cli2 create \nrollup-cli2 init \nrollup-cli2 -v`);
         return;
     }
     const ignoreInput = path.resolve(__dirname, 'ignore.txt');
     if (args[0] === 'init') {
         const dir = fs.readdirSync(cwd);
         if (dir.length !== 0) {
-            console.log(`rollup-cli2 init: this dir is not empty`);
+            log.red(`rollup-cli2 init: this dir is not empty`);
             return;
         }
         utils.copyFile(templateUrl, cwd, { exclude: 'node_modules' });
         const ignoreOutput = path.resolve(cwd, '.gitignore');
         fs.copyFileSync(ignoreInput, ignoreOutput);
-        console.log('you rollup template init finish');
+        log.boldGreen('you rollup template init finish');
     }
     if (args[0] === 'create') {
         const name = args[1];
         if (!name) {
-            console.log(`rollup-cli2 create: rollup-cli2 create [name]`);
+            log.red(`rollup-cli2 create: rollup-cli2 create [name]`);
             return;
         }
         const toPath = path.resolve(cwd, name);
         if (fs.existsSync(toPath)) {
-            console.log(`rollup-cli2 create: ${name} dir is exit`);
+            log.red(`rollup-cli2 create: ${name} dir is exit`);
             return;
         }
         fs.mkdirSync(toPath);
@@ -42,10 +43,10 @@ function init() {
         const ignoreOutput = path.resolve(toPath, '.gitignore');
         fs.copyFileSync(ignoreInput, ignoreOutput);
 
-        console.log('you rollup template init finish');
+        log.green('you rollup template init finish');
     }
     if (args[0] === '-v') {
-        console.log(`rollup-cli2 version: ${package.version}`);
+        log.blue(`rollup-cli2 version: ${package.version}`);
     }
 }
 

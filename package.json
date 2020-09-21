@@ -1,6 +1,6 @@
 {
   "name": "rollup-cli2",
-  "version": "2.6.3",
+  "version": "2.6.4",
   "description": "a cli for rollup project",
   "main": "index.js",
   "scripts": {},
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/wesmile2020/rollup-cli/issues"
   },
-  "homepage": "https://github.com/wesmile2020/rollup-cli#readme"
+  "homepage": "https://github.com/wesmile2020/rollup-cli#readme",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
 }
