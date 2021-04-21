@@ -5,14 +5,14 @@ a rollup project cli
 setup
 ```bash
 # install
-npm install -g rc-cli2
+npm install -g rollup-cli2
 
 # init a exit project
-rc-cli2 init
+rollup-cli2 init
 
 # create a new project
-rc-cli2 create [name]
+rollup-cli2 create [name]
 
 # version
-rc-cli2 -v
+rollup-cli2 -v
 ```

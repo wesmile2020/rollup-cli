@@ -1,5 +1,4 @@
-/node_modules
-/.idea
-/template/node_modules
-/template/dist
-/.DS_Store
+node_modules
+.idea
+.DS_Store
+package-lock.json

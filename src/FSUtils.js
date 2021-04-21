@@ -1,6 +1,22 @@
 const path = require('path');
 const fs = require('fs');
 
+function delFile(target) {
+    if (!fs.existsSync(target)) {
+        return;
+    }
+    const stat = fs.statSync(target)
+    if (stat.isFile()) {
+        fs.unlinkSync(target);
+    } else if (stat.isDirectory()) {
+        const dirs = fs.readdirSync(target);
+        for (let i = 0; i < dirs.length; i += 1) {
+            delFile(path.join(target, dirs[i]));
+        }
+        fs.rmdirSync(target);
+    }
+}
+
 function getFileName(url) {
     const arr = url.split(path.sep);
     return arr[arr.length - 1];
@@ -38,17 +54,27 @@ function loopCopy(from, to, exclude) {
 function copyFile(from, to, options = {}) {
     let excludeReg = /^[]/;
     if (options.exclude) {
-        let str = '';
         if (options.exclude instanceof RegExp) {
-            str = options.exclude.toString();
+            excludeReg = options.exclude;
         } else if (typeof options.exclude === 'string') {
-            str = options.exclude;
+            excludeReg = new RegExp(options.exclude);
         }
-        excludeReg = new RegExp(from + '[^]+' + str);
     }
     loopCopy(from, to, excludeReg);
 }
 
+function updateJson(target, replace, format = 4) {
+    if (!fs.existsSync(target)) return;
+    const stat = fs.statSync(target);
+    if (!stat.isFile()) return;
+    const obj = JSON.parse(fs.readFileSync(target, { encoding: 'utf-8' }));
+    const resultObj = { ...obj, ...replace };
+    fs.writeFileSync(target, JSON.stringify(resultObj, null, format));
+}
+
 module.exports = {
+    delFile,
     copyFile,
-};
+    getFileName,
+    updateJson,
+}
