@@ -37,7 +37,6 @@ async function init(target) {
             description,
         };
         FSUtils.updateJson(path.resolve(target, 'package.json'), nextObj);
-        FSUtils.updateJson(path.resolve(target, 'package-lock.json'), nextObj);
 
         spinner.succeed('> Your project create success');
     } catch (error) {

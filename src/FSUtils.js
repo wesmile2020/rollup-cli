@@ -63,7 +63,7 @@ function copyFile(from, to, options = {}) {
     loopCopy(from, to, excludeReg);
 }
 
-function updateJson(target, replace, format = 4) {
+function updateJson(target, replace, format = 2) {
     if (!fs.existsSync(target)) return;
     const stat = fs.statSync(target);
     if (!stat.isFile()) return;
@@ -77,4 +77,4 @@ module.exports = {
     copyFile,
     getFileName,
     updateJson,
-}
+};
